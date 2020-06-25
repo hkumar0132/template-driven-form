@@ -1,0 +1,78 @@
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <h2>Job Portal</h2>
+            <h3 style = "margin-bottom: 100px;">Welcome</h3>
+            <p>You are 30 seconds away from earning your own money!</p>
+        </div>
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Apply to this job</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input [(ngModel)]= "employee.first_name" #first_name = "ngModel" [class.is-invalid] = "first_name.invalid && first_name.touched" required
+                                type="text" class="form-control" placeholder="First Name *"/>
+                                <div *ngIf = "first_name.errors && (first_name.invalid || first_name.touched)">
+                                    <small style = "color : red" *ngIf = "first_name.errors.required && first_name.touched"><b>It cannot be empty</b></small>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]= "employee.last_name" type="text" #last_name = "ngModel" [class.is-invalid] = "last_name.invalid && last_name.touched" required
+                                class="form-control" placeholder="Last Name *" />
+                                <div *ngIf = "last_name.errors && (last_name.invalid || last_name.touched)">
+                                    <small style = "color : red"*ngIf = "last_name.errors.required && last_name.touched">
+                                        <b>It cannot be empty</b>
+                                    </small>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]= "employee.password" type="password" class="form-control"
+                                required #password = "ngModel" 
+                                pattern = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}"
+                                placeholder="Password *" />
+                                <div *ngIf = "password.errors && (password.invalid || password.touched)">
+                                    <small style = "color : red" *ngIf = "password.errors.required && password.touched"><b>Password is required</b></small>
+                                    <small style = "color : red" *ngIf = "password.errors.pattern && password.touched"><b>Password must be at least 8 characters in length 
+                                        and must contain a lowercase, an uppercase letter, a digit and a special character</b></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]= "employee.confirm_password" type="password" class="form-control"  placeholder="Confirm Password *"
+                                required #confirm_password = "ngModel"  type = "password"/>
+                                <div *ngIf = "employee.password != employee.confirm_password">
+                                    <small style = "color : red" *ngIf = "confirm_password.touched"><b>Must be same as above</b></small>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class = "form-control" [(ngModel)]= "employee.email" type = "email"
+                                #email = "ngModel" [class.is-invalid] = "email.invalid && email.touched" required
+                                pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                placeholder="Your Email *" />
+
+                                <div *ngIf = "email.errors && (email.invalid || email.touched)">
+                                    <small style = "color : red" *ngIf = "email.errors.required && email.touched"><b>Email is required</b></small>
+                                    <small style = "color : red" *ngIf = "email.errors.pattern && email.touched"><b>Invalid email</b></small>
+                                  </div>
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]= "employee.phone" #phone = "ngModel" [class.is-invalid] = "phone.invalid && phone.touched" required 
+                                type = "text" id = "phone" pattern = "^([0|\+[0-9]{1,5})?([6-9][0-9]{9})$"  class="form-control" placeholder="Your Phone *" />
+                                <div *ngIf = "phone.errors && (phone.invalid || phone.touched)">
+                                    <small style = "color : red" *ngIf = "phone.errors.required && phone.touched"><b>Mobile number is required</b></small>
+                                    <small style = "color : red" *ngIf = "phone.errors.pattern && phone.touched"><b>Invalid mobile number</b></small>
+                                </div>
+                            </div>
+                            <input (click) = "onSubmit()" type="submit" class="btnRegister"  value="Register"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
