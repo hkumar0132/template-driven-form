@@ -14,7 +14,7 @@ export class FormParentComponent {
     
    }
 
-  employee : Employee;
+  employee : Employee = new Employee();
 
   onSubmit() {
 

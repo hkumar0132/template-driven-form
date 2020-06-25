@@ -6,7 +6,7 @@ import { Employee } from './Employee'
 })
 export class HelperService {
 
-  employee : Employee;
+  employee : Employee = new Employee();
 
   constructor() { }
 

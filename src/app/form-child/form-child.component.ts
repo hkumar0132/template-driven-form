@@ -11,7 +11,7 @@ export class FormChildComponent implements OnInit {
 
   constructor(private helper : HelperService) { }
 
-  employee : Employee;
+  employee : Employee = new Employee();
 
   ngOnInit(): void {
     this.employee = this.helper.employee;
